@@ -1,2 +1,3 @@
-# pig-reinforcement-learning
-Summer 2021 Code Project
+# Pig Reinforcement Learning
+
+This is a little prject done over the summer of 2021.
