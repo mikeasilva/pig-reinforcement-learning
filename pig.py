@@ -6,9 +6,9 @@ Created on Sat Jun  5 11:59:57 2021
 """
 import random
 
-class Game:
 
-    def __init__(self, player_1, player_2, verbose = False):
+class Game:
+    def __init__(self, player_1, player_2, verbose=False):
         self.players = [player_1, player_2]
         self.player_index = 0
         self.history = []
@@ -35,9 +35,15 @@ class Game:
                     # We log the roll
                     self.history.append((self.player_index, roll))
                     # Print a debug message
-                    self.debug(current_player.name + "(Player " + str(self.player_index + 1) + ") rolled a " + str(roll))
+                    self.debug(
+                        current_player.name
+                        + "(Player "
+                        + str(self.player_index + 1)
+                        + ") rolled a "
+                        + str(roll)
+                    )
                     # Check to see if they rolled a one
-                    if(roll == 1):
+                    if roll == 1:
                         self.points_at_risk = 0
                         it_is_the_players_turn = False
                     else:
@@ -48,10 +54,16 @@ class Game:
             self.score[self.player_index] += self.points_at_risk
             self.debug("Score: " + str(self.score[0]) + " to " + str(self.score[1]))
             # Change the current player
-            self.player_index = (1 if self.player_index == 0 else 0)
+            self.player_index = 1 if self.player_index == 0 else 0
             self.points_at_risk = 0
-        winner = (0 if self.score[0] >= 100 else 1)
-        self.debug("Player "+str(winner + 1) + " Wins with "+ self.score[winner] + " Points!"
+        winner = 0 if self.score[0] >= 100 else 1
+        self.debug(
+            "Player "
+            + str(winner + 1)
+            + " Wins with "
+            + self.score[winner]
+            + " Points!"
+        )
 
     def debug(self, message):
         if self.verbose:
