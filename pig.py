@@ -15,6 +15,7 @@ class Game:
         self.points_at_risk = 0
         self.score = [0, 0]
         self.verbose = verbose
+        self.winner = None
 
     def play(self):
         while max(self.score) < 100:
@@ -56,15 +57,18 @@ class Game:
             # Change the current player
             self.player_index = 1 if self.player_index == 0 else 0
             self.points_at_risk = 0
-        winner = 0 if self.score[0] >= 100 else 1
+        self.winner = 0 if self.score[0] >= 100 else 1
         self.debug(
             "Player "
-            + str(winner + 1)
+            + str(self.winner + 1)
             + " Wins with "
-            + self.score[winner]
+            + str(self.score[self.winner])
             + " Points!"
         )
 
     def debug(self, message):
         if self.verbose:
             print(message)
+
+    def get_winner(self):
+        return self.winner
