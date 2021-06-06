@@ -20,6 +20,7 @@ class Game:
         while max(self.score) < 100:
             # Figure out who's the current player
             current_player = self.players[self.player_index]
+            other_player = self.players[(1 if self.player_index == 0 else 0)]
             # Set the player's turn flag to True
             it_is_the_players_turn = True
             # Loop until it's not the player's turn
@@ -28,8 +29,9 @@ class Game:
                 if current_player.roll_again() == 1:
                     # Roll the die
                     roll = random.randint(1, 6)
-                    # Player observe's the results
-                    current_player.observe_roll(roll)
+                    # Players observe's the results
+                    current_player.observe_roll(roll, True)
+                    other_player.observe_roll(roll, False)
                     # We log the roll
                     self.history.append((self.player_index, roll))
                     # Print a debug message
@@ -49,8 +51,7 @@ class Game:
             self.player_index = (1 if self.player_index == 0 else 0)
             self.points_at_risk = 0
         winner = (0 if self.score[0] >= 100 else 1)
-        print("Player "+str(winner + 1) + " Wins!")
-        print(self.score[winner])
+        self.debug("Player "+str(winner + 1) + " Wins with "+ self.score[winner] + " Points!"
 
     def debug(self, message):
         if self.verbose:
