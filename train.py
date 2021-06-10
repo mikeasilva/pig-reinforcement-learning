@@ -14,8 +14,10 @@ from agents import primo
 from agents import ralph
 from agents import maverick
 from agents import fred
-from agents import ted as p2
+from agents import ted
 from agents import luke
+from agents import barry
+from agents import athena as p2
 
 n_games_to_play = 1000000
 n_games_until_save = 100
@@ -25,7 +27,7 @@ player_2 = p2.Player()
 
 if player_2.is_learner:
     # Full memory file
-    memory_file = "./" + player_2.name + "/" + player_1.name + ".p"
+    memory_file = "./" + player_2.name + ".p"
 
     if path.exists(memory_file):
         print("Loading Memory")
