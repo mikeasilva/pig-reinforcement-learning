@@ -13,7 +13,7 @@ class Player:
     name = "Ted"
     is_learner = True
 
-    def __init__(self, memory={}, initialize_with=0.001, learn_from_others = False):
+    def __init__(self, memory={}, initialize_with=0.001, learn_from_others = True):
         self.initialize_with = initialize_with
         self.memory = memory
         self.points_at_risk = 0
@@ -26,8 +26,8 @@ class Player:
         if self.points_at_risk == 0:
             return 1
         probability_of_success = state_memory[1] / sum(state_memory)
-        # Determine if Fred should roll like flipping a biased coin
-        decision = 1 if random.random() < probability_of_success else 0
+        # Flip a biased coin
+        decision = 0 if random.random() < probability_of_success else 1
         if decision == 0:
             self.points_at_risk = 0
         return decision
