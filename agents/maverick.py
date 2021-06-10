@@ -10,7 +10,7 @@ class Player:
     # Maverick targets a user specified threshold
     name = "Maverick"
 
-    def __init__(self, target = 20, plus_or_minus = 3):
+    def __init__(self, target=20, plus_or_minus=3):
         self.points_at_risk = 0
         self.score = 0
         self.target = target
@@ -19,7 +19,10 @@ class Player:
     def roll_again(self):
         # Stop if close to target or if we have enough points to win the game
         fuzzy_target = self.target - self.plus_or_minus
-        if self.points_at_risk <= fuzzy_target or self.score + self.points_at_risk < 100:
+        if (
+            self.points_at_risk <= fuzzy_target
+            or self.score + self.points_at_risk < 100
+        ):
             return 1
         self.score += self.points_at_risk
         self.points_at_risk = 0
@@ -32,3 +35,9 @@ class Player:
                 self.points_at_risk += roll
             else:
                 self.points_at_risk = 0
+
+    def score_update(self, my_score, opponent_score):
+        do_nothing = True
+
+    def new_game(self):
+        do_nothing = True

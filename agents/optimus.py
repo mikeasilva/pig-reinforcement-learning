@@ -29,3 +29,9 @@ class Player:
                 self.points_at_risk += roll
             else:
                 self.points_at_risk = 0
+
+    def score_update(self, my_score, opponent_score):
+        do_nothing = True
+
+    def new_game(self):
+        do_nothing = True
