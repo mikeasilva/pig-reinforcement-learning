@@ -11,8 +11,9 @@ class Player:
     # Fred is a player that makes a decision based on probabilities.
     # He observes the game to formulate his probabilities.
     name = "Fred"
+    is_learner = True
 
-    def __init__(self, memory={}, initialize_with=100, learn_from_others = False):
+    def __init__(self, memory={}, initialize_with=0.001, learn_from_others = False):
         self.initialize_with = initialize_with
         self.memory = memory
         self.my_score = 0

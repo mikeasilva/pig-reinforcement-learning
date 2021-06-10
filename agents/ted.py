@@ -11,6 +11,7 @@ class Player:
     # Ted is a player that makes a decision based on probabilities on the
     # action to take based on the points at risk
     name = "Ted"
+    is_learner = True
 
     def __init__(self, memory={}, initialize_with=0.001, learn_from_others = False):
         self.initialize_with = initialize_with

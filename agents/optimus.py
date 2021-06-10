@@ -9,6 +9,7 @@ Created on Sat Jun  5 11:59:57 2021
 class Player:
     # Optimus targets 20, the optimal strategy
     name = "Optimus"
+    is_learner = False
 
     def __init__(self):
         self.points_at_risk = 0

@@ -9,6 +9,7 @@ Created on Sat Jun  5 11:59:57 2021
 class Player:
     # Maverick targets a user specified threshold
     name = "Maverick"
+    is_learner = False
 
     def __init__(self, target=20, plus_or_minus=3):
         self.points_at_risk = 0

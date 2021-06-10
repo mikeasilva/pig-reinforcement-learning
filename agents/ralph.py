@@ -9,6 +9,7 @@ Created on Sat Jun  5 11:59:57 2021
 class Player:
     # "Reckless" Ralph rolls until he gets 100+ points then quits
     name = "Ralph"
+    is_learner = False
 
     def __init__(self):
         self.points_at_risk = 0

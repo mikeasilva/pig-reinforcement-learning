@@ -10,6 +10,7 @@ import random
 class Player:
     # "Lucky" Luke randomly decides what to do
     name = "Luke"
+    is_learner = False
 
     def roll_again(self):
         return 1 if random.random() < 0.5 else 0

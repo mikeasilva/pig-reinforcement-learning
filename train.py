@@ -14,24 +14,28 @@ from agents import primo
 from agents import ralph
 from agents import maverick
 from agents import fred
+from agents import ted as p2
+from agents import luke
 
 n_games_to_play = 1000000
 n_games_until_save = 100
 
-player_1 = optimus.Player()
+player_1 = ralph.Player()
+player_2 = p2.Player()
 
-# Full memory file
-memory_file = player_1.name + ".p"
+if player_2.is_learner:
+    # Full memory file
+    memory_file = "./" + player_2.name + "/" + player_1.name + ".p"
 
-if path.exists(memory_file):
-    print("Loading Memory")
-    memory = pickle.load(open(memory_file, "rb"))
-    df = pd.DataFrame.from_dict(memory, orient="index")
-    initialize_with = df[0].min()
-    player_2 = fred.Player(memory=memory, initialize_with=initialize_with, learn_from_others=True)
-else:
-    print("No Memory Found")
-    player_2 = fred.Player(initialize_with=1, learn_from_others=True)
+    if path.exists(memory_file):
+        print("Loading Memory")
+        memory = pickle.load(open(memory_file, "rb"))
+        df = pd.DataFrame.from_dict(memory, orient="index")
+        initialize_with = df[0].min()
+        player_2 = p2.Player(memory=memory, initialize_with=initialize_with)
+    else:
+        print("No Memory Found")
+        player_2 = p2.Player(initialize_with=0.001)
 
 results = {}
 win_rates = []
@@ -66,18 +70,19 @@ while n_games_played < n_games_to_play:
         #print("Win Rate After " + str(n_games_played) + " Games: " + str(round(wins * 100, 2)) + "%")
 
 print(results)
-# Get the player's memory
-memory = player_2.get_memory()
-# Save the memory
-pickle.dump(memory, open(memory_file, "wb"))
-# A brief analysis of the memories
-df = pd.DataFrame.from_dict(memory, orient="index")
-df = df.sort_index()
-df.to_csv(player_1.name+".csv")
-print(df.head())
-# How many states has the player seen?
-print(len(df.index))
-print(wins)
+if player_2.is_learner:
+    # Get the player's memory
+    memory = player_2.get_memory()
+    # Save the memory
+    pickle.dump(memory, open(memory_file, "wb"))
+    # A brief analysis of the memories
+    df = pd.DataFrame.from_dict(memory, orient="index")
+    df = df.sort_index()
+    df.to_csv(player_1.name+".csv")
+    print(df.head())
+    # How many states has the player seen?
+    print(len(df.index))
 
-df2 = pd.DataFrame(win_rates)
-df2.to_csv("win_rates.csv", index = False)
+    df2 = pd.DataFrame(win_rates)
+    df2.to_csv("win_rates.csv", index = False)
+print(wins)

@@ -9,6 +9,7 @@ Created on Sat Jun  5 11:59:57 2021
 class Player:
     # Primo is a player that rolls once and then ends their turn
     name = "Primo"
+    is_learner = False
 
     def __init__(self):
         self.n_roll = 0
